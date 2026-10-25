@@ -15,7 +15,7 @@ The software empowers clinical researchers, bioinformaticians, and regulatory re
 
 ---
 
-## Project Analysis - Genetic Editting......
+##  Genetic Editing......
 
 <img width="500" height="300" alt="Screenshot 2026-10-25 121708" src="https://github.com/user-attachments/assets/658da348-70b2-49ef-9969-7b14673d76ea" />
 

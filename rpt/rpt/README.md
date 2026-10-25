@@ -17,35 +17,10 @@ The software empowers clinical researchers, bioinformaticians, and regulatory re
 
 ## 🏗️ Architecture & Technology Stack
 
-```mermaid
-flowchart TD
-    subgraph Frontend ["Frontend (React 19 + Vite + Tailwind CSS + Recharts)"]
-        UI["Decision Dashboard (Figure 2)"]
-        Plots["Figures 3, 4, 5 Visualizer"]
-        Karyo["Karyotype Risk Map (GRCh38)"]
-        Trials["Clinical Pipeline Atlas (Table 1)"]
-        Safety["Safety Matrix & 15-Yr Registry (Table 2)"]
-        Flow["Lifecycle Workflow (Figure 6)"]
-        Tech["Base & Prime Comparison (Section 7)"]
-        Dossier["Clinical Dossier Generator"]
-    end
 
-    subgraph Backend ["Backend (FastAPI + Python 3.12 + NumPy/SciPy)"]
-        SimEngine["Biophysical Simulation Engine\n(Hill Kinetics & Off-Target Power Model)"]
-        GeneService["Gene Reference & Off-Target Service\n(GRCh38 Coordinates & Homology)"]
-        TrialsData["Scoping Synthesis & Clinical Trials DB\n(PRISMA-ScR 32 Studies)"]
-        SafetyService["Hazard Mitigations & 15-Yr Registry Engine"]
-        EthicsEngine["Bioethics & Somatic/Germline Gatekeeper"]
-        ReportEngine["Regulatory Dossier Builder"]
-    end
+<img width="500" height="300" alt="Screenshot 2026-10-25 114652" src="https://github.com/user-attachments/assets/d401aff2-1072-422b-81b4-5b3c68f91d83" />
 
-    UI -->|Parameters & Ethics Inputs| SimEngine
-    SimEngine -->|Status Verdict & Curves| Plots
-    GeneService -->|Loci & Cleavage Probabilities| Karyo
-    TrialsData -->|Evidence & Endpoints| Trials
-    SafetyService -->|Mitigations & Registry Alerts| Safety
-    ReportEngine -->|Markdown & JSON Dossier| Dossier
-```
+
 
 ## 📋 Direct Mapping to Research Paper Content
 

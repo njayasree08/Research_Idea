@@ -1,0 +1,430 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Page layout ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{3}
+
+% ---------- Fonts / encoding ----------
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp}
+  \usepackage{textgreek}
+\else
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{%
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath}
+}{}
+
+% ---------- Paragraph style: justified, uniform spacing ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}
+\raggedbottom
+
+% ---------- Headings: one consistent size scale ----------
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\itshape}{\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{14pt plus 4pt minus 2pt}{6pt plus 2pt}
+\titlespacing*{\subsection}{0pt}{10pt plus 3pt minus 2pt}{4pt plus 2pt}
+\titlespacing*{\subsubsection}{0pt}{8pt plus 2pt minus 2pt}{3pt plus 1pt}
+
+% ---------- Captions: one consistent style ----------
+\usepackage[font=small,labelfont=bf,labelsep=period,skip=6pt]{caption}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=2pt,topsep=4pt,parsep=0pt}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% ---------- Tables ----------
+\usepackage{longtable,booktabs,array,tabularx}
+\renewcommand{\arraystretch}{1.25}
+\newcommand{\tablefont}{\small}
+\usepackage{calc}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+% ---------- Figures ----------
+\usepackage{graphicx}
+\usepackage{float}                 % [H] = place figure exactly here
+\usepackage[section]{placeins}     % floats cannot cross section boundaries
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.8}
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
+
+\newcommand{\safeincludegraphics}[2][]{%
+  \IfFileExists{#2}{%
+    \includegraphics[#1]{#2}%
+  }{%
+    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering
+    Image file \texttt{#2} not found. Upload this image to Overleaf.}}%
+  }%
+}
+
+% ---------- Links / URLs / bibliography ----------
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
+\urlstyle{same}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+% ======================= TITLE BLOCK =======================
+\begin{center}
+
+{\Large\bfseries
+CRISPR-Cas9 in Human Health:\\[4pt]
+Therapeutic Applications, Safety Challenges,\\[4pt]
+and Ethical Considerations
+\par}
+
+\vspace{12pt}
+
+{\normalsize\bfseries
+JAYASREE N\textsuperscript{1} and VASUNDRA M A\textsuperscript{1}
+\par}
+
+\vspace{4pt}
+
+{\small
+\textsuperscript{1}Department of B.Tech. CSE (AI \& Data Analytics)\\
+Sri Ramachandra Faculty of Engineering and Technology\\
+Porur, Chennai.
+\par}
+
+\end{center}
+
+\vspace{6pt}
+
+% ======================= ABSTRACT =======================
+\section*{Abstract}
+CRISPR-Cas9 has progressed from a laboratory genome-editing technique to a potential clinical treatment for several genetic disorders. The strongest clinical evidence currently comes from blood disorders treated through ex vivo editing and liver diseases treated through in vivo approaches. Exagamglogene autotemcel has demonstrated clinical benefit in patients with sickle cell disease and transfusion-dependent beta-thalassemia. Liver-directed CRISPR therapies have also shown promising results for hereditary transthyretin amyloidosis and hereditary angioedema. Other applications, including inherited eye diseases, cancer immunotherapy, and cardiometabolic disorders, remain under investigation. Key challenges include unintended genetic changes, efficient delivery to target cells, immune responses, and limited long-term safety data. Ethical concerns include the distinction between somatic and germline editing, informed consent for irreversible treatments, and equitable access to expensive gene therapies. Progress will depend on improving editing accuracy and delivery, monitoring patients over the long-term, and developing effective regulatory frameworks.
+
+\textbf{Keywords:} CRISPR-Cas9; genome editing; precision medicine; clinical applications; gene therapy; ethics
+
+% ======================= 1 INTRODUCTION =======================
+\section{Introduction}
+
+Genome editing predates CRISPR-Cas9. Earlier technologies, including zinc-finger nucleases and transcription activator-like effector nucleases (TALENs), established the foundations for targeted genetic modification. However, these methods were relatively complex, costly, and time-consuming to design. CRISPR-Cas9 simplified genome editing by using a guide RNA to direct the Cas9 enzyme to a specific DNA sequence, making the system more programmable and accessible. This flexibility has accelerated its development for therapeutic applications, including inherited blood disorders, metabolic diseases, eye disorders, cancer, and infectious diseases \cite{badru2026,frangoul2024,gillmore2021}.
+
+Despite its potential, several challenges remain before CRISPR-Cas9 can be widely adopted in clinical practice. Long-term safety, unintended genetic changes, informed consent, and equitable access to treatment require careful consideration. This review examines current therapeutic applications of CRISPR-Cas9, the technical and safety limitations affecting wider use, and the ethical and regulatory considerations associated with clinical application.
+
+\textbf{Objectives}
+
+\begin{itemize}[nosep]
+\item Examine the therapeutic applications of CRISPR-Cas9 across major disease categories.
+\item Identify the key technical and safety challenges limiting broader clinical use.
+\item Evaluate the ethical, societal, and regulatory considerations associated with clinical application.
+\end{itemize}
+
+% ======================= 2 METHODS =======================
+\section{Methods}\label{methods}
+
+This scoping review followed the framework described by Arksey and O'Malley and was reported in accordance with PRISMA-ScR guidance \cite{arksey2005}. PubMed, Embase, and Dimensions were searched for peer-reviewed studies published in English. The initial search identified 3,013 records. Following screening and selection, 32 studies were included. These comprised preclinical studies, Phase I--III clinical trials, and literature addressing ethical and regulatory issues. The selected studies were thematically synthesized across three main areas: clinical applications, safety limitations, and governance. This approach mapped the breadth of available evidence and identified key gaps for future research.
+
+% ======================= 3 RESULTS =======================
+\section{Results}\label{results}
+
+\subsection{Therapeutic Applications}\label{therapeutic-applications}
+
+\subsubsection{Hematologic and Monogenic Disorders}
+
+Blood disorders represent one of the most advanced clinical applications of CRISPR-Cas9, with exagamglogene autotemcel serving as a prominent example. Rather than directly correcting the mutated HBB gene, this therapy targets an enhancer involved in regulating BCL11A in a patient's hematopoietic stem cells. Disrupting this enhancer increases fetal hemoglobin production, which reduces the tendency of sickle hemoglobin to polymerize. Editing is performed ex vivo, allowing the modified cells to be assessed before they are returned to the patient. This approach provides greater control over the edited cell population, although careful safety assessment and follow-up remain necessary \cite{frangoul2024,locatelli2024}.
+
+Figure~\ref{fig:crispr-review-architecture} summarizes the review workflow, from literature screening and selection to thematic synthesis and findings.
+
+Research is also exploring approaches for beta-thalassemia, fetal-hemoglobin reactivation, severe congenital neutropenia, and Artemis-deficient immunodeficiency. Together, these developments suggest that ex vivo stem-cell editing may become a broader strategy for inherited blood and immune disorders.
+
+% Figure 1: placed exactly here so it fills the empty space on the page
+\begin{figure}[H]
+    \centering
+    \safeincludegraphics[width=\linewidth]{crispr_review_architecture_detailed.png}
+    \caption{CRISPR-Cas9 review architecture showing literature screening and selection, thematic synthesis of clinical applications, safety barriers, and governance, and the resulting review findings.}
+    \label{fig:crispr-review-architecture}
+\end{figure}
+
+% ======================= 4 IN VIVO =======================
+\section{In Vivo Editing for Metabolic and Rare Diseases}\label{in-vivo-editing-for-metabolic-and-rare-diseases}
+
+Delivering CRISPR-Cas9 directly into the body, primarily through lipid nanoparticles targeted to the liver, has expanded therapy beyond cell-based approaches. NTLA-2001 targets the TTR gene in hereditary transthyretin amyloidosis, while NTLA-2002 targets KLKB1 for hereditary angioedema. CTX310, which targets ANGPTL3, is being investigated for lipid lowering and cardiovascular risk. These examples illustrate the potential of liver-directed in vivo editing, although efficacy, safety, and durability require continued evaluation \cite{gillmore2021,gillmore2025,cohn2025,laffin2025}. Figure~\ref{fig:efficacy-delivery} illustrates the relationship between efficacy and delivery efficiency.
+
+\begin{figure}[!htbp]
+    \centering
+    \safeincludegraphics[width=0.7\linewidth]{image3.png}
+    \caption{Efficacy and delivery efficiency in CRISPR-Cas9 therapies.}
+    \label{fig:efficacy-delivery}
+\end{figure}
+
+% ======================= 5 OPHTHALMOLOGY =======================
+\section{Ophthalmology, Oncology, and Infectious Disease}\label{ophthalmology-oncology-and-infectious-disease}
+
+EDIT-101 investigated in vivo editing for CEP290-associated retinal degeneration. CRISPR-Cas9 applications in cancer remain challenging, particularly for solid tumors, because of targeted-delivery difficulties and tumor complexity. Progress has also been made in cell-based cancer therapies, including genetically modified allogeneic CAR-T cells studied in patients with relapsed blood cancers. CRISPR-based approaches are also being investigated for infectious diseases. In HIV research, targeting proviral DNA has shown potential antiviral effects, but viral escape and resistance remain important challenges. Table~\ref{tab:crispr-therapies} summarizes representative approaches across disease categories \cite{pierce2024,iyer2025}.
+
+\begin{table}[!htbp]
+\centering
+\tablefont
+\caption{Representative CRISPR-Cas9 therapies by disease category.}
+\label{tab:crispr-therapies}
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{0.25\linewidth}|X|>{\raggedright\arraybackslash}p{0.24\linewidth}|}
+\hline
+\textbf{Disease} & \textbf{Representative Therapy / Approach} & \textbf{Clinical Stage} \\
+\hline
+Sickle cell disease / $\beta$-thalassemia & Exa-cel --- ex vivo BCL11A enhancer editing & Approved (FDA/EMA) \\
+\hline
+ATTR amyloidosis & NTLA-2001 --- in vivo TTR knockdown (LNP delivery) & Late-stage / approved indications \\
+\hline
+Hereditary angioedema & NTLA-2002 --- in vivo KLKB1 editing & Late-stage trials \\
+\hline
+Dyslipidemia / cardiovascular risk & CTX310 --- in vivo ANGPTL3 editing & Early-phase (Phase 1) \\
+\hline
+Retinal degeneration (CEP290) & EDIT-101 --- subretinal in vivo editing & Early-phase clinical \\
+\hline
+Hematologic malignancy & Allogeneic CRISPR CAR-T (e.g., CTX130) & Early-phase clinical \\
+\hline
+HIV / infectious disease & Proviral DNA disruption + RNAi & Preclinical \\
+\hline
+Solid tumors & Direct in vivo tumor editing & Preclinical \\
+\hline
+\end{tabularx}
+\end{table}
+
+% ======================= 6 SAFETY =======================
+\section{Safety Challenges and Technical Barriers}\label{safety-challenges-and-technical-barriers}
+
+Off-target editing remains a major safety concern associated with CRISPR-Cas9. Because many approaches cut both strands of DNA, unintended effects can extend beyond changes at incorrect sites. These effects may include larger genomic rearrangements at similar DNA sequences, activation of p53-related cellular stress responses, and, in some cases, expansion of specific edited blood-cell clones. These risks highlight the need for improved editing accuracy and long-term monitoring of treated patients \cite{kalter2025}.
+
+\begin{table}[!htbp]
+\centering
+\tablefont
+\caption{Principal safety barriers and current mitigations.}
+\label{tab:safety-barriers}
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{0.19\linewidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Barrier} & \textbf{Concern} & \textbf{Current Mitigation} \\
+\hline
+Off-target editing & Indels, structural rearrangements, oncogenic risk & High-fidelity Cas9 variants; GUIDE-seq / CIRCLE-seq off-target nomination \\
+\hline
+Delivery & Viral vector immunogenicity vs. non-viral inefficiency & Lipid nanoparticle (LNP) and tissue-targeted carrier development \\
+\hline
+Immunogenicity & Infusion reactions; conditioning-regimen toxicity & Pre-screening for Cas9 immunity; refined conditioning regimens \\
+\hline
+Durability & Sparse multi-year outcome data & Mandatory registry-based long-term surveillance \\
+\hline
+\end{tabularx}
+\end{table}
+
+High-fidelity Cas9 variants, off-target detection assays, and ongoing clonal surveillance can reduce risk, but none eliminates it completely. Delivery is another major bottleneck: viral vectors can transduce cells efficiently but may carry immunogenicity and insertional risks, while non-viral systems can be less efficient. Myeloablative conditioning required by some ex vivo therapies also carries risks, including infection and secondary malignancy. Because many therapies are relatively new, longer-term registry data are needed to better establish durability and delayed adverse effects \cite{kalter2025,aljabali2024}.
+
+Regulators have responded by requiring longer post-marketing surveillance windows, mandatory long-term registries, and pre-set rules for pausing a program if a safety signal shows up. Table~\ref{tab:safety-barriers} lines up the main risk categories against how each is currently being managed. Worth noting: none of these mitigations eliminates its corresponding risk outright, which is a big part of why safety---not efficacy---is now the real bottleneck slowing broader rollout.
+
+
+The safety concerns that come up again and again in the literature are:
+
+\begin{itemize}
+\item Off-target cleavage and structural genomic rearrangements
+\item Immune responses to Cas9 protein and delivery vehicles
+\item Toxicity from myeloablative conditioning regimens
+\item Still-incomplete multi-year safety surveillance
+\end{itemize}
+
+Figure~\ref{fig:off-target-risk} plots efficacy against off-target risk, and Figure~\ref{fig:off-target-risk-alternative} shows how both measures change as Cas9 concentration increases.
+
+\begin{figure}[!htbp]
+    \centering
+    \safeincludegraphics[width=0.7\linewidth]{image4.png}
+    \caption{Scatter plot of efficacy versus off-target risk, colored by therapy status.}
+    \label{fig:off-target-risk}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \safeincludegraphics[width=0.7\linewidth]{image5.png}
+    \caption{Simulated efficacy and off-target risk as Cas9 concentration increases.}
+    \label{fig:off-target-risk-alternative}
+\end{figure}
+
+% ======================= 7 ETHICS =======================
+\section{Ethical, Societal, and Regulatory Considerations}\label{ethical-societal-and-regulatory-considerations}
+
+A major ethical issue in genome editing is the distinction between somatic and germline editing. Somatic changes affect the treated patient and are not inherited, whereas germline changes can be passed to future generations. Because of these potential long-term effects, heritable genome editing raises significant ethical and scientific concerns. Current clinical CRISPR-Cas9 therapies mainly involve somatic editing, where risks can be assessed through clinical studies and patient monitoring.
+
+Some ex vivo treatments cause permanent genetic changes after edited cells are returned to the patient. Informed consent is therefore particularly important: patients need to understand that some long-term effects remain uncertain. Conditioning procedures used in certain treatments can also carry serious risks, including infertility.
+
+Access is another concern. CRISPR-based treatments can be expensive and require specialized healthcare facilities. Without efforts to improve affordability and availability, advances in genome editing may not benefit patients equally.
+
+Long-term follow-up, transparent reporting, and consistent regulatory standards are therefore important for the responsible use of CRISPR-Cas9. Key ethical considerations include maintaining a clear distinction between somatic and germline editing, ensuring informed consent reflects uncertainty about long-term outcomes, improving equitable access, and strengthening transparent international oversight~\cite{wiley2025,subica2023,taguchi2019,alex2024}. Figure~\ref{fig:crispr-therapeutic-lifecycle} gives a simplified overview of the review workflow and findings, including the governance and ethics themes discussed here.
+
+\begin{figure}[!htbp]
+    \centering
+    \safeincludegraphics[width=\linewidth]{image.jpeg}
+    \caption{Simplified overview of the review workflow and resulting findings.}
+    \label{fig:crispr-therapeutic-lifecycle}
+\end{figure}
+
+% ======================= 8 DISCUSSION =======================
+\section{Discussion}\label{discussion}
+
+The clinical development of CRISPR-Cas9 differs considerably across disease areas. Hematologic disorders have progressed more rapidly because they offer several practical advantages, including well-defined genetic targets, accessible stem cells, established transplantation methods, and measurable clinical outcomes such as transfusion independence. Liver-directed therapies have also advanced because the liver can be readily targeted using delivery systems such as lipid nanoparticles.
+
+In contrast, the development of CRISPR-based treatments for solid tumors remains more challenging. Tumor heterogeneity, an immunosuppressive environment, and difficulties in delivering the editing system to the appropriate cells have limited progress, with much of the research still focused on preclinical studies and cell-based therapies.
+
+Compared with earlier genome-editing technologies such as zinc finger nucleases and TALENs, CRISPR-Cas9 offers greater programmability and relatively lower development costs. However, its wider accessibility also increases the need for appropriate ethical and regulatory oversight. This review focuses on major translational trends rather than formally assessing the quality of individual studies. It reflects English-language literature and may therefore underrepresent research published in other languages or regions.
+
+% ======================= 9 EMERGING =======================
+\section{Emerging Editing Technologies}\label{emerging-editing-technologies}
+
+Conventional CRISPR-Cas9 is still the most clinically advanced platform, but its reliance on cutting both DNA strands is exactly what's driving interest in gentler alternatives. Base editing swaps one DNA base for another without a double-strand break, which suits it well to fixing the single-nucleotide changes behind most pathogenic variants---though it only works within a fairly narrow editing window and needs compatible target sequences nearby. Prime editing goes a step further, pairing a Cas9 nickase with a reverse transcriptase to write insertions, deletions, or substitutions without needing donor DNA at all---at the cost of lower efficiency in many cell types and more delivery complexity. Neither is a replacement for standard CRISPR-Cas9 so much as a complement to it; conventional CRISPR still carries the strongest clinical track record in hematologic and liver-directed disease.
+
+% ======================= 10 POLICY =======================
+\section{Clinical and Policy Implications}\label{clinical-and-policy-implications}
+
+As genome editing moves beyond specialized trial centers and toward routine care, health-system preparedness will become increasingly important. Responsible implementation of CRISPR-based therapies requires more than technological advances: healthcare systems need trained specialists, long-term patient monitoring, and multidisciplinary teams to manage treatment and follow-up care. A major policy challenge is the lack of consistent international standards for germline editing and the commercialization of genome-editing therapies. Differences between countries may create regulatory gaps and increase the risk of unethical practices, including unregulated medical tourism.
+
+The high cost of individualized manufacturing and conditioning procedures can also limit access, particularly for patients in lower-resource settings. Improving affordability will require scalable manufacturing methods, appropriate pricing strategies, and stronger international collaboration. Ensuring equitable access should therefore remain an important part of the development and regulation of CRISPR-based therapies.
+
+% ======================= 11 LIMITATIONS =======================
+\section{Limitations of Current Evidence}\label{limitations-of-current-evidence}
+
+This review has several limitations. Long-term safety data remain limited because many CRISPR-Cas9 therapies have only recently entered clinical trials. Some studies also involve small patient groups, which may limit the generalizability of their findings. In addition, the geographic and demographic diversity of trial participants is still limited, making it difficult to determine whether the reported outcomes apply equally across different populations.
+
+Applications in oncology, infectious diseases, and neurological disorders are also largely at the preclinical stage, highlighting the uneven progress of CRISPR-Cas9 across disease areas. As this is a scoping review, its purpose is to describe the available evidence rather than formally assess study quality or directly compare treatment effectiveness. The findings should therefore be viewed as an overview of the current field rather than a definitive assessment of individual therapies. Finally, the restriction to English-language publications may have excluded relevant research from other regions. Future reviews should consider including studies published in multiple languages to provide a broader perspective.
+
+% ======================= 12 CONCLUSION =======================
+\section{Conclusion}\label{conclusion}
+
+CRISPR-Cas9 has progressed from an experimental laboratory technique to a clinically validated approach in selected settings. The strongest clinical evidence currently comes from certain monogenic blood disorders and liver-targeted diseases. Expanding its application to cancer, infectious diseases, and other conditions will require improved editing precision, safer and more efficient delivery systems, and longer-term monitoring of treatment outcomes. Ethical and regulatory frameworks must develop alongside these advances.
+
+The future of CRISPR-based medicine will depend on balancing scientific progress with responsible clinical use and equitable access. Addressing safety, regulation, and accessibility together will be essential for the wider and sustainable use of genome-editing therapies.
+
+\textbf{Key Points}
+
+\begin{itemize}
+\item Hematologic and liver-targeted monogenic disorders currently have the strongest clinical evidence.
+\item Off-target effects and delivery challenges remain major technical concerns.
+\item Somatic genome editing therapies are advancing clinically while heritable germline editing remains restricted.
+\item Equitable access should be considered throughout the development of CRISPR-based therapies.
+\end{itemize}
+
+\textbf{Funding} No external funding was received for this manuscript.
+
+\textbf{Competing Interests} The authors declare no competing interests.
+
+\textbf{Data Availability} This review is based on findings from previously published studies. No new primary data were generated.
+
+\textbf{Ethics Statement} Ethical approval was not required because the review used previously published research and did not involve human participants, patient data, or animal experimentation.
+
+% ======================= REFERENCES =======================
+\begingroup
+\small
+\setlength{\parskip}{0pt}
+\begin{thebibliography}{99}
+
+\bibitem{badru2026}
+Badru MD, Ghansah V, Adesanya IO, David J, Okechukwu NC, Eke DO.
+CRISPR-Cas9 in Human Health: A Scoping Review of Therapeutic Applications, Safety Challenges, and Ethical Frameworks.
+\textit{Australian Journal of Biomedical Research}. 2026;2(3):aubm024.
+
+\bibitem{frangoul2024}
+Frangoul H, et al.
+Exagamglogene autotemcel for severe sickle cell disease.
+\textit{New England Journal of Medicine}. 2024;390(18):1649--1662.
+
+\bibitem{gillmore2021}
+Gillmore JD, et al.
+CRISPR-Cas9 in vivo gene editing for transthyretin amyloidosis.
+\textit{New England Journal of Medicine}. 2021;385(6):493--502.
+
+\bibitem{arksey2005}
+Arksey H, O'Malley L.
+Scoping studies: towards a methodological framework.
+\textit{International Journal of Social Research Methodology}. 2005;8(1):19--32.
+
+\bibitem{locatelli2024}
+Locatelli F, et al.
+Exagamglogene autotemcel for transfusion-dependent beta-thalassemia.
+\textit{New England Journal of Medicine}. 2024;390(18):1663--1676.
+
+\bibitem{gillmore2025}
+Gillmore JD, et al.
+Long-term safety and efficacy of CRISPR-Cas9 therapy in hereditary transthyretin amyloidosis with polyneuropathy.
+\textit{Nature Medicine}. 2025;31(3):410--420.
+
+\bibitem{cohn2025}
+Cohn DM, et al.
+CRISPR-Cas9 in vivo gene editing of KLKB1 for hereditary angioedema.
+\textit{New England Journal of Medicine}. 2024;390(5):432--441.
+
+\bibitem{laffin2025}
+Laffin M, et al.
+Phase 1 trial of CRISPR-Cas9 gene editing targeting ANGPTL3.
+\textit{New England Journal of Medicine}. 2025;393(21):2119--2130.
+
+\bibitem{pierce2024}
+Pierce EA, et al.
+Gene editing for CEP290-associated retinal degeneration.
+\textit{New England Journal of Medicine}. 2024;390(21):1972--1984.
+
+\bibitem{iyer2025}
+Iyer SP, et al.
+Safety and activity of CTX130, a CD70-targeted allogeneic CRISPR-Cas9-engineered CAR T-cell therapy.
+\textit{The Lancet Oncology}. 2025;26(1):110--122.
+
+\bibitem{kalter2025}
+Kalter N, et al.
+Off-target effects in CRISPR-Cas genome editing for human therapeutics: progress and challenges.
+\textit{Molecular Therapy -- Nucleic Acids}. 2025;36(3):102636.
+
+\bibitem{aljabali2024}
+Aljabali AAA, El-Tanani M, Tambuwala MM.
+Principles of CRISPR-Cas9 technology: advancements in genome editing and emerging trends in drug delivery.
+\textit{Journal of Drug Delivery Science and Technology}. 2024;92:105338.
+
+\bibitem{wiley2025}
+Wiley L, et al.
+The ethics of human embryo editing via CRISPR-Cas9 technology: a systematic review.
+\textit{HEC Forum}. 2025;37(2):267--303.
+
+\bibitem{subica2023}
+Subica AM.
+CRISPR in public health: health equity implications and the role of community in gene-editing research and applications.
+\textit{American Journal of Public Health}. 2023;113(8):874--882.
+
+\bibitem{taguchi2019}
+Taguchi I, et al.
+Ethical attitudes toward clinical genome editing among genetic professionals.
+\textit{Journal of Human Genetics}. 2019;64(5):437--445.
+
+\bibitem{alex2024}
+Alex R, Winkler DA.
+Ethical frameworks for genome and epigenome editing in modern medicine.
+\textit{Bioethics Review}. 2024;38(2):145--162.
+
+\end{thebibliography}
+\endgroup
+
+\end{document}

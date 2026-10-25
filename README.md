@@ -15,6 +15,11 @@ The software empowers clinical researchers, bioinformaticians, and regulatory re
 
 ---
 
+<img width="500" height=300" alt="Screenshot 2026-10-25 121708" src="https://github.com/user-attachments/assets/2cd0263d-471c-43b7-8037-0ed0a0273c74" />
+
+<img width="500" height="300" alt="Screenshot 2026-10-25 121725" src="https://github.com/user-attachments/assets/38f2bfa4-7020-4ec6-8225-7db41b346f33" />
+
+---
 
 ### 1. Backend (Python 3.12 / FastAPI)
 - **FastAPI**: Asynchronous RESTful endpoints with automatic OpenAPI/Swagger documentation.

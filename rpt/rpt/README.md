@@ -18,7 +18,7 @@ The software empowers clinical researchers, bioinformaticians, and regulatory re
 ## 🏗️ Architecture & Technology Stack
 
 
-<img width="700" height="500" alt="Screenshot 2026-10-25 114652" src="https://github.com/user-attachments/assets/d401aff2-1072-422b-81b4-5b3c68f91d83" />
+<img width="900" height="400" alt="Screenshot 2026-10-25 114652" src="https://github.com/user-attachments/assets/d401aff2-1072-422b-81b4-5b3c68f91d83" />
 
 
 

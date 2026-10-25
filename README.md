@@ -93,20 +93,6 @@ npm run dev
 
 ---
 
-## 📋 Direct Mapping to Research Paper Content
-
-| Paper Section / Figure | Platform Module / Component | File Location |
-| :--- | :--- | :--- |
-| **Figure 1 (PRISMA-ScR Architecture)** | PRISMA Scoping Modal & Methodology Flowchart | [`frontend/src/components/PrismaScopingModal.tsx`](file:///frontend/src/components/PrismaScopingModal.tsx) |
-| **Figure 2 (Decision Workflow)** | Core Decision Support Dashboard & Status Verdict | [`frontend/src/components/SimulationEngineView.tsx`](file:///frontend/src/components/SimulationEngineView.tsx) |
-| **Figure 3 (Efficacy vs Delivery)** | Figure 3 Delivery Efficiency Curve (3 Cas9 Doses) | [`backend/app/services/simulation_engine.py`](file:///backend/app/services/simulation_engine.py) |
-| **Figure 4 (Tradeoff Plot)** | Figure 4 Scatter Plot Colored by Status Verdict | [`frontend/src/components/SimulationEngineView.tsx`](file:///frontend/src/components/SimulationEngineView.tsx) |
-| **Figure 5 (Concentration Curve)** | Figure 5 Concentration-Response Kinetic Curve | [`backend/app/services/simulation_engine.py`](file:///backend/app/services/simulation_engine.py) |
-| **Figure 6 (Lifecycle & Feedback)** | Therapeutic Lifecycle & Manufacturing Pipeline | [`frontend/src/components/LifecycleWorkflow.tsx`](file:///frontend/src/components/LifecycleWorkflow.tsx) |
-| **Table 1 (Clinical Pipeline)** | Clinical Trials Atlas & PRISMA ScR Studies | [`frontend/src/components/ClinicalTrialsExplorer.tsx`](file:///frontend/src/components/ClinicalTrialsExplorer.tsx) |
-| **Table 2 (Safety & Mitigations)** | Safety Hazard Matrix & 15-Year Registry | [`frontend/src/components/SafetyMatrixView.tsx`](file:///frontend/src/components/SafetyMatrixView.tsx) |
-| **Section 5 & 8 (Bioethics & Policy)** | Ethics Demarcation, Consent, & Equity Gatekeeper | [`frontend/src/components/EthicsGovernanceView.tsx`](file:///frontend/src/components/EthicsGovernanceView.tsx) |
-| **Section 7 (Emerging Technologies)** | Conventional CRISPR vs Base vs Prime Editing | [`frontend/src/components/EmergingTechComparison.tsx`](file:///frontend/src/components/EmergingTechComparison.tsx) |
 
 
 
